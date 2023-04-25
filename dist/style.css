@@ -31,30 +31,42 @@ main {
   display: flex;
   flex-direction: column;
   background-color: #f6f7f9;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 5px 5px 11px 5px rgba(0, 0, 0, 0.29);
   gap: 20px;
   overflow: hidden;
+  width: 15vw;
 }
 
 .profileHeader {
   background-color: #0177f7;
   color: white;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .position{
     display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.position img{
+    width: 30px;
 }
 
 .profileBody{
     display: flex;
     flex-direction: column;
     padding: 10px 20px;
+    margin-bottom: 20px;
 }
 
 .profileBody > p {
-    border: 1px solid black;
+    border: 1px solid rgb(96, 95, 95);
     padding: 10px 5px;
     background-color: white;
+    font-size: small;
 }
