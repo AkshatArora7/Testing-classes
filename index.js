@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
 const Intern = require("./lib/Intern.js");
+const Helper = require("./src/helper.js");
 
 const options = ["1. Add Engineer.", "2. Add Intern.", "3. Finish."];
 
@@ -98,71 +99,15 @@ async function init() {
       intern.id = internData.id;
       intern.email = internData.email;
       intern.name = internData.name;
-      intern.school = intern.school;
+      intern.school = internData.school;
       teamMemberList.push(intern);
     } else {
-      createIndex(teamMemberList);
+      var helper = new Helper()
+      helper.createIndex(teamMemberList);
       console.log("Team Build Finished");
       return;
     }
   }
-}
-
-function createIndex(teamMemberList) {
-  allMembers = "";
-  teamMemberList.forEach((member) => {
-    var icon = !member.officeNumber
-      ? !member.gitHub
-        ? "Intern"
-        : "Engineer"
-      : "Manager";
-    var addedInfo = "";
-    if (icon == "Manager") {
-      addedInfo = `<p>OfficeNumber: ${member.officeNumber}</p>`;
-    }
-    if (icon == "Intern") {
-      addedInfo = `<p>School: ${member.school}</p>`;
-    }
-    if (icon == "Engineer") {
-      addedInfo = `<p>Github: <a href="https://github.com/${member.gitHub}">${member.gitHub}</a></p>`;
-    }
-    var teamMember = `
-        <div class="profile">
-                <div class="profileHeader">
-                <h2>${member.name}</h2>
-                <div class="position">
-                    <img class="icon" src="./assets/icons/${icon}.png" alt="">
-                    <h3>${icon}</h3>
-                </div>
-                </div>
-                <div class="profileBody">
-                    <p>ID: ${member.id}</p>
-                    <p>Email: <a href="mailto:${member.email}">${member.email}</a></p>
-                    ${addedInfo}
-                </div>
-            </div>
-        `;
-    allMembers += teamMember;
-  });
-
-  var htmlString = `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Profile Generator</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <header>My Team</header>
-    <main>
-    ${allMembers}
-    </main>
-</body>
-</html>
-    `;
 }
 
 init();
